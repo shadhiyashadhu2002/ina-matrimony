@@ -23,7 +23,7 @@
         max-height: 750px;
         min-height: 550px;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         overflow: hidden;
         background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
@@ -34,20 +34,32 @@
     
     .hero-container {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         max-width: 1400px;
         margin: 0 auto;
         gap: 4rem;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .hero-container.form-active {
+        justify-content: space-between;
+        align-items: flex-start;
         padding-top: 2rem;
     }
     
     .hero-content {
-        text-align: left;
+        text-align: center;
         color: white;
         z-index: 10;
         flex: 1;
+        max-width: 600px;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .hero-content.form-active {
+        text-align: left;
         max-width: 600px;
     }
     
@@ -226,8 +238,13 @@
     .hero-buttons {
         display: flex;
         gap: 1.5rem;
-        justify-content: flex-start;
+        justify-content: center;
         flex-wrap: wrap;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .hero-buttons.form-active {
+        justify-content: flex-start;
     }
     
     .btn-primary {
@@ -431,18 +448,22 @@
     }
     
     @media (max-width: 1200px) {
-        .hero-container {
+        .hero-container,
+        .hero-container.form-active {
             flex-direction: column;
             gap: 2rem;
             align-items: center;
+            justify-content: center;
         }
         
-        .hero-content {
+        .hero-content,
+        .hero-content.form-active {
             text-align: center;
             max-width: 100%;
         }
         
-        .hero-buttons {
+        .hero-buttons,
+        .hero-buttons.form-active {
             justify-content: center;
         }
         
@@ -487,14 +508,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     const registerBtn = document.querySelector('.btn-primary');
     const registrationForm = document.querySelector('.registration-form');
+    const heroContainer = document.querySelector('.hero-container');
+    const heroContent = document.querySelector('.hero-content');
+    const heroButtons = document.querySelector('.hero-buttons');
     
     registerBtn.addEventListener('click', function(e) {
         e.preventDefault();
         
         if (registrationForm.classList.contains('show')) {
+            // Hide form and center content
             registrationForm.classList.remove('show');
+            heroContainer.classList.remove('form-active');
+            heroContent.classList.remove('form-active');
+            heroButtons.classList.remove('form-active');
         } else {
+            // Show form and move content to left
             registrationForm.classList.add('show');
+            heroContainer.classList.add('form-active');
+            heroContent.classList.add('form-active');
+            heroButtons.classList.add('form-active');
         }
     });
 });

@@ -41,10 +41,16 @@
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ac0742;
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
         }
         
         .nav-links {
@@ -121,7 +127,9 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="{{ route('home') }}" class="logo">INA Matrimony</a>
+            <a href="{{ route('home') }}" class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="INA Matrimony Logo">
+            </a>
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="#">About</a></li>
