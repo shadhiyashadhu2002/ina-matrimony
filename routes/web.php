@@ -3,11 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\DataMigrationController;
 use App\Http\Controllers\Api\ProfileController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Login routes
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::get('/login-success', [LoginController::class, 'showSuccess'])->name('login-success');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Registration routes
+Route::post('/register', [LoginController::class, 'register'])->name('register');
+
+// Profile routes
+Route::get('/my-profile', [LoginController::class, 'showProfile'])->name('my-profile');
 
 // Database testing routes
 Route::get('/test-local-db', [DataController::class, 'getLocalData']);

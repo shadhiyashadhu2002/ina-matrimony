@@ -770,6 +770,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroContent = document.querySelector('.hero-content');
     const heroButtons = document.querySelector('.hero-buttons');
     
+    // Check if there's a success message and close form automatically
+    const successBanner = document.querySelector('.success-banner');
+    const errorBanner = document.querySelector('.error-banner');
+    
+    if (successBanner) {
+        // Hide the registration form on success
+        registrationForm.classList.remove('show');
+        heroContainer.classList.remove('form-active');
+        heroContent.classList.remove('form-active');
+        heroButtons.classList.remove('form-active');
+        
+        // Auto-hide success message after 10 seconds
+        setTimeout(function() {
+            successBanner.style.transition = 'opacity 0.5s ease';
+            successBanner.style.opacity = '0';
+            setTimeout(function() {
+                successBanner.style.display = 'none';
+            }, 500);
+        }, 10000);
+    }
+    
+    if (errorBanner) {
+        // Keep the registration form open on errors so user can fix them
+        registrationForm.classList.add('show');
+        heroContainer.classList.add('form-active');
+        heroContent.classList.add('form-active');
+        heroButtons.classList.add('form-active');
+        
+        // Auto-hide error message after 15 seconds (longer than success)
+        setTimeout(function() {
+            errorBanner.style.transition = 'opacity 0.5s ease';
+            errorBanner.style.opacity = '0';
+            setTimeout(function() {
+                errorBanner.style.display = 'none';
+            }, 500);
+        }, 15000);
+    }
+    
     registerBtn.addEventListener('click', function(e) {
         e.preventDefault();
         
@@ -876,6 +914,27 @@ function sendInterest(profileId) {
 <section class="hero-section">
     <div class="hero-container">
         <div class="hero-content">
+            @if (session('success'))
+                <div class="success-banner" style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);">
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.3rem; font-family: 'Times New Roman', Times, serif;">🎉 Registration Successful!</h3>
+                    <p style="margin: 0; font-size: 1rem; font-family: 'Times New Roman', Times, serif;">{{ session('success') }}</p>
+                </div>
+            @endif
+            
+            @if ($errors->any())
+                <div class="error-banner" style="background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);">
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.3rem; font-family: 'Times New Roman', Times, serif;">❌ Registration Failed</h3>
+                    <div style="text-align: left; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">
+                        <strong style="font-family: 'Times New Roman', Times, serif;">Please fix the following errors:</strong>
+                        <ul style="margin: 0.5rem 0 0 1rem; font-family: 'Times New Roman', Times, serif;">
+                            @foreach ($errors->all() as $error)
+                                <li style="margin-bottom: 0.3rem;">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+            
             <h1 class="hero-title">
                 Connecting Hearts,<br>
                 <span class="highlight">Building Families</span>
@@ -905,20 +964,20 @@ function sendInterest(profileId) {
                     <label for="on_behalf">On Behalf</label>
                     <select id="on_behalf" name="on_behalf" required>
                         <option value="">Select an option</option>
-                        <option value="self">Self</option>
-                        <option value="parents">Parents</option>
-                        <option value="guardian">Guardian</option>
+                        <option value="self" {{ old('on_behalf') == 'self' ? 'selected' : '' }}>Self</option>
+                        <option value="parents" {{ old('on_behalf') == 'parents' ? 'selected' : '' }}>Parents</option>
+                        <option value="guardian" {{ old('on_behalf') == 'guardian' ? 'selected' : '' }}>Guardian</option>
                     </select>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <input type="text" id="first_name" name="first_name" required>
+                        <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" id="last_name" name="last_name" required>
+                        <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
                     </div>
                 </div>
                 
@@ -927,19 +986,19 @@ function sendInterest(profileId) {
                         <label for="gender">Gender</label>
                         <select id="gender" name="gender" required>
                             <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="date_of_birth">Date of Birth</label>
-                        <input type="date" id="date_of_birth" name="date_of_birth" required>
+                        <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}" required>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="email_phone">Email or Phone Number</label>
-                    <input type="text" id="email_phone" name="email_phone" placeholder="Enter email or phone number" required>
+                    <input type="text" id="email_phone" name="email_phone" value="{{ old('email_phone') }}" placeholder="Enter email or phone number" required>
                 </div>
                 
                 <div class="form-group">
