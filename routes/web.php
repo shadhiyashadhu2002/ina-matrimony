@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\DataMigrationController;
+use App\Http\Controllers\Api\ProfileController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -18,6 +19,12 @@ Route::get('/test-custom-query', [DataController::class, 'customQuery']);
 Route::get('/sync-users', [DataMigrationController::class, 'syncUsers']);
 Route::get('/server-stats', [DataMigrationController::class, 'getServerStats']);
 Route::get('/compare-data', [DataMigrationController::class, 'compareData']);
+
+// API routes for profiles
+Route::get('/api/featured-profiles', [ProfileController::class, 'getFeaturedProfiles']);
+Route::get('/api/available-photos', [ProfileController::class, 'getAvailablePhotos']);
+Route::get('/api/debug-server', [ProfileController::class, 'debugServerConnection']);
+Route::get('/api/profiles/filter', [App\Http\Controllers\Api\ProfileController::class, 'getProfilesByFilter']);
 
 // Simple database connection test
 Route::get('/test-databases', function () {

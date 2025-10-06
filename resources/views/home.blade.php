@@ -469,6 +469,172 @@
         border-radius: 50%;
     }
     
+    /* Featured Profiles Section */
+    .featured-profiles-section {
+        padding: 4rem 2rem;
+        background-color: #fff;
+    }
+    
+    .profiles-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .profiles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .profile-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #f0f0f0;
+    }
+    
+    .profile-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .profile-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .profile-image .placeholder {
+        font-size: 4rem;
+        color: #ac0742;
+        opacity: 0.3;
+    }
+    
+    .profile-info {
+        padding: 1.5rem;
+    }
+    
+    .profile-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+    
+    .profile-id {
+        color: #ac0742;
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-details {
+        color: #666;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        font-style: italic;
+    }
+    
+    .profile-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .profile-tag {
+        background: #f8f9fa;
+        color: #666;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        border: 1px solid #e9ecef;
+    }
+    
+    .profile-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .btn-view-profile {
+        flex: 1;
+        padding: 0.75rem;
+        background: #ac0742;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .btn-view-profile:hover {
+        background: #8a0635;
+    }
+    
+    .btn-interest {
+        padding: 0.75rem;
+        background: transparent;
+        color: #ac0742;
+        border: 2px solid #ac0742;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-interest:hover {
+        background: #ac0742;
+        color: white;
+    }
+    
+    .view-more-container {
+        margin-top: 3rem;
+    }
+    
+    .btn-view-more {
+        padding: 1rem 2.5rem;
+        background: transparent;
+        color: #ac0742;
+        border: 2px solid #ac0742;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-view-more:hover {
+        background: #ac0742;
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .loading-spinner {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+        color: #ac0742;
+    }
+
     /* CTA Section */
     .cta-section {
         background: linear-gradient(135deg, #ac0742 0%, #8a0635 100%);
@@ -621,7 +787,87 @@ document.addEventListener('DOMContentLoaded', function() {
             heroButtons.classList.add('form-active');
         }
     });
+    
+    // Load featured profiles on page load
+    loadProfiles();
 });
+
+function loadProfiles() {
+    const profilesGrid = document.getElementById('profilesGrid');
+    if (!profilesGrid) return;
+    
+    profilesGrid.innerHTML = '<div class="loading-spinner" style="display: block;">Loading profiles...</div>';
+    
+    // Fetch profiles from server
+    fetch('/api/featured-profiles')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                displayProfiles(data.profiles || []);
+            } else {
+                console.error('API Error:', data.error);
+                displaySampleProfiles();
+            }
+        })
+        .catch(error => {
+            console.error('Error loading profiles:', error);
+            displaySampleProfiles(); // Show sample data if API fails
+        });
+}
+
+function displayProfiles(profiles) {
+    const profilesGrid = document.getElementById('profilesGrid');
+    if (!profilesGrid) return;
+    
+    if (profiles.length === 0) {
+        displaySampleProfiles();
+        return;
+    }
+    
+    const profilesHtml = profiles.map(profile => `
+        <div class="profile-card">
+            <div class="profile-image">
+                ${profile.photo ? 
+                    `<img src="${profile.photo}" alt="${profile.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                     <div class="placeholder" style="display:none;">👤</div>` : 
+                    '<div class="placeholder">👤</div>'
+                }
+            </div>
+            <div class="profile-info">
+                <h3 class="profile-name">${profile.name}</h3>
+                <p class="profile-id">ID: ${profile.code}</p>
+                <p class="profile-details">${profile.age} yrs • ${profile.occupation}</p>
+                <div class="profile-actions">
+                    <a href="/profile/${profile.code}" class="btn-view-profile">View Profile</a>
+                    <button class="btn-interest" onclick="sendInterest('${profile.code}')">♡</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    profilesGrid.innerHTML = profilesHtml;
+}
+
+function displaySampleProfiles() {
+    const sampleProfiles = [
+        { id: 1, name: 'Priya S.', member_id: 'INA001', age: 28, profession: 'Software Engineer', location: 'Kochi' },
+        { id: 2, name: 'Arjun M.', member_id: 'INA002', age: 32, profession: 'Doctor', location: 'Trivandrum' },
+        { id: 3, name: 'Meera K.', member_id: 'INA003', age: 26, profession: 'Teacher', location: 'Kozhikode' },
+        { id: 4, name: 'Rohit P.', member_id: 'INA004', age: 30, profession: 'Business', location: 'Thrissur' },
+        { id: 5, name: 'Anjali R.', member_id: 'INA005', age: 29, profession: 'Nurse', location: 'Kottayam' },
+        { id: 6, name: 'Vishnu N.', member_id: 'INA006', age: 31, profession: 'Engineer', location: 'Palakkad' }
+    ];
+    
+    displayProfiles(sampleProfiles);
+}
+
+function loadMoreProfiles() {
+    alert('Load more profiles feature will be implemented in the backend.');
+}
+
+function sendInterest(profileId) {
+    alert(`Interest sent to profile ID: ${profileId}`);
+}
 </script>
 @endsection
 
@@ -640,6 +886,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </p>
             <div class="hero-buttons">
                 <a href="/register" class="btn-primary">Register Free Today</a>
+                <a href="/login" class="btn-secondary">Login</a>
                 <a href="/premium" class="btn-secondary">Upgrade to Premium</a>
             </div>
         </div>
@@ -713,6 +960,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <button type="submit" class="btn-create-account">Create Account</button>
             </form>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Profiles Section -->
+<section class="featured-profiles-section">
+    <div class="profiles-container">
+        <h2 class="section-title">Featured Profiles</h2>
+        <p class="section-subtitle">Meet some of our verified members</p>
+        
+        <div class="profiles-grid" id="profilesGrid">
+            <!-- Profiles will be loaded here -->
+        </div>
+        
+        <div class="view-more-container">
+            <button class="btn-view-more" onclick="loadMoreProfiles()">View More Profiles</button>
         </div>
     </div>
 </section>
