@@ -158,4 +158,19 @@ class LoginController extends Controller
     {
         return view('my-profile');
     }
+
+    public function showInterest()
+    {
+        return view('my-interest');
+    }
+
+    public function showShortlist()
+    {
+        return view('shortlist');
+    }
+
+    public function showMessaging()
+    {
+        return view('messaging');
+    }
 }

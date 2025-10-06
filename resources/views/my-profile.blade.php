@@ -340,9 +340,9 @@
     <div class="nav-tabs">
         <a href="#" class="nav-tab">Dashboard</a>
         <a href="#" class="nav-tab active">My Profile</a>
-        <a href="#" class="nav-tab">My Interest</a>
-        <a href="#" class="nav-tab">Shortlist</a>
-        <a href="#" class="nav-tab">Messaging</a>
+        <a href="{{ route('my-interest') }}" class="nav-tab">My Interest</a>
+        <a href="{{ route('shortlist') }}" class="nav-tab">Shortlist</a>
+        <a href="{{ route('messaging') }}" class="nav-tab">Messaging</a>
         <a href="#" class="nav-tab">Ignored User List</a>
         <a href="#" class="nav-tab">Matched profile</a>
         <a href="#" class="nav-tab">Profile Viewers</a>

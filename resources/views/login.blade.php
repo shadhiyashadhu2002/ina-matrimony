@@ -735,9 +735,9 @@
         <div class="dashboard-nav">
             <a href="#" class="active">🏠 Dashboard</a>
             <a href="{{ route('my-profile') }}">👤 My Profile</a>
-            <a href="#">❤️ My Interest</a>
-            <a href="#">⭐ Shortlist</a>
-            <a href="#">💬 Messaging</a>
+            <a href="{{ route('my-interest') }}">❤️ My Interest</a>
+            <a href="{{ route('shortlist') }}">⭐ Shortlist</a>
+            <a href="{{ route('messaging') }}">💬 Messaging</a>
             <a href="#">🚫 Ignored User List</a>
             <a href="#">🤝 Matched profile</a>
             <a href="#">👁️ Profile Viewers</a>
@@ -760,9 +760,9 @@
                     <li><a href="#">📖 Happy Story</a></li>
                     <li><a href="#">📦 Packages</a></li>
                     <li><a href="#">💰 My Wallet</a></li>
-                    <li><a href="#">💬 Message</a></li>
-                    <li><a href="#">❤️ My Interest</a></li>
-                    <li><a href="#">⭐ Shortlist</a></li>
+                    <li><a href="{{ route('messaging') }}">💬 Message</a></li>
+                    <li><a href="{{ route('my-interest') }}">❤️ My Interest</a></li>
+                    <li><a href="{{ route('shortlist') }}">⭐ Shortlist</a></li>
                     <li><a href="#">🚫 Ignored User List</a></li>
                     <li><a href="#">🔑 Change Password</a></li>
                     <li><a href="#">⚙️ Manage Profile</a></li>
