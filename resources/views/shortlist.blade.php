@@ -301,19 +301,19 @@
     </div>
     
     <div class="nav-bar">
-        <a href="#" class="nav-link">HOME</a>
+        <a href="{{ route('home') }}" class="nav-link">HOME</a>
         <a href="#" class="nav-link">ACTIVE MEMBERS</a>
         <a href="#" class="nav-link">PREMIUM PLANS</a>
-        <a href="#" class="nav-link">HAPPY STORIES</a>
+        <a href="{{ route('happy-stories') }}" class="nav-link">HAPPY STORIES</a>
         <a href="#" class="nav-link">CONTACT US</a>
     </div>
     
     <div class="sub-nav-bar">
-        <a href="#" class="sub-nav-link">Dashboard</a>
-        <a href="#" class="sub-nav-link">My Profile</a>
-        <a href="#" class="sub-nav-link">My Interest</a>
+        <a href="{{ route('login') }}" class="sub-nav-link">Dashboard</a>
+        <a href="{{ route('my-profile') }}" class="sub-nav-link">My Profile</a>
+        <a href="{{ route('my-interest') }}" class="sub-nav-link">My Interest</a>
         <a href="#" class="sub-nav-link active">Shortlist</a>
-        <a href="#" class="sub-nav-link">Messaging</a>
+        <a href="{{ route('messaging') }}" class="sub-nav-link">Messaging</a>
         <a href="#" class="sub-nav-link">Ignored User List</a>
         <a href="#" class="sub-nav-link">Matched profile</a>
         <a href="#" class="sub-nav-link">Profile Viewers</a>
@@ -328,14 +328,14 @@
             </div>
             
             <ul class="menu-list">
-                <li class="menu-item">📊 Dashboard</li>
-                <li class="menu-item">🖼️ Gallery</li>
-                <li class="menu-item">📖 Happy Story</li>
-                <li class="menu-item">📦 Packages</li>
-                <li class="menu-item">💰 My Wallet</li>
-                <li class="menu-item">💬 Message</li>
-                <li class="menu-item">❤️ My Interest</li>
-                <li class="menu-item active">📋 Shortlist</li>
+                <li><a href="{{ route('login') }}" class="menu-item">📊 Dashboard</a></li>
+                <li><a href="#" class="menu-item">🖼️ Gallery</a></li>
+                <li><a href="{{ route('happy-stories') }}" class="menu-item">📖 Happy Story</a></li>
+                <li><a href="#" class="menu-item">📦 Packages</a></li>
+                <li><a href="#" class="menu-item">💰 My Wallet</a></li>
+                <li><a href="{{ route('messaging') }}" class="menu-item">💬 Message</a></li>
+                <li><a href="{{ route('my-interest') }}" class="menu-item">❤️ My Interest</a></li>
+                <li><a href="#" class="menu-item active">📋 Shortlist</a></li>
             </ul>
         </aside>
         

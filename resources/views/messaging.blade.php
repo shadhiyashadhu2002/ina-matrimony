@@ -12,28 +12,43 @@
         }
         
         body {
-            font-family: 'Times New Roman', serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
             min-height: 100vh;
         }
         
         .header {
             background: white;
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #eee;
         }
         
         .logo {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
         }
         
-        .logo img {
-            height: 50px;
-            width: auto;
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e91e63;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .help-line {
+            color: #999;
+            font-size: 0.9rem;
         }
         
         .user-info {
@@ -42,281 +57,275 @@
             gap: 1rem;
         }
         
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .username {
+            color: #e91e63;
+            font-weight: 600;
+        }
+        
         .logout-btn {
-            background: linear-gradient(135deg, #e91e63 0%, #ac0742 100%);
+            background: #e91e63;
             color: white;
             padding: 0.5rem 1.5rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
         }
         
         .logout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            background: #c2185b;
+        }
+        
+        .nav-bar {
+            background: white;
+            padding: 0 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+        }
+        
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 1rem 0;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .nav-link:hover {
+            color: #e91e63;
+        }
+        
+        .sub-nav-bar {
+            background: white;
+            padding: 0 2rem;
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .sub-nav-link {
+            color: #666;
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+        
+        .sub-nav-link:hover {
+            color: #e91e63;
+        }
+        
+        .sub-nav-link.active {
+            color: #e91e63;
+            border-bottom-color: #e91e63;
         }
         
         .main-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 80px);
-            padding: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            gap: 2rem;
+            padding: 0 2rem;
         }
         
-        .messaging-container {
+        .sidebar {
+            width: 280px;
             background: white;
-            border-radius: 25px;
-            padding: 4rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 2rem;
+            height: fit-content;
+        }
+        
+        .profile-section {
             text-align: center;
-            max-width: 700px;
-            width: 100%;
-            animation: slideIn 0.8s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .messaging-icon {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 4.5rem;
-            animation: float 3s ease-in-out infinite;
-            box-shadow: 0 12px 35px rgba(23, 162, 184, 0.4);
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-        
-        .greeting {
-            font-size: 4rem;
-            font-weight: bold;
-            color: #17a2b8;
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            color: #6c757d;
             margin-bottom: 2rem;
-            line-height: 1.6;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
         }
         
-        .messaging-message {
-            font-size: 1.3rem;
-            color: #333;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(23, 162, 184, 0.08) 0%, rgba(19, 132, 150, 0.08) 100%);
-            border-radius: 20px;
-            border-left: 5px solid #17a2b8;
-            line-height: 1.7;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 2.5rem 0;
-            padding: 2rem;
-            background: #f8f9fa;
-            border-radius: 20px;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-            border-radius: 15px;
-            background: white;
-            transition: all 0.3s;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: #17a2b8;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            color: #6c757d;
-            margin-top: 0.8rem;
-            line-height: 1.3;
-        }
-        
-        .message-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .feature-card {
-            background: linear-gradient(135deg, rgba(23, 162, 184, 0.05) 0%, rgba(19, 132, 150, 0.05) 100%);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: left;
-            border: 1px solid rgba(23, 162, 184, 0.1);
-        }
-        
-        .feature-card h4 {
-            color: #17a2b8;
-            margin-bottom: 0.8rem;
-            font-size: 1.2rem;
-        }
-        
-        .feature-card p {
-            color: #6c757d;
-            line-height: 1.5;
-            font-size: 1rem;
-        }
-        
-        .action-buttons {
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+            margin: 0 auto 1rem;
             display: flex;
-            gap: 1.5rem;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
+            font-size: 3rem;
+            color: #888;
         }
         
-        .btn {
-            padding: 1.2rem 2.5rem;
-            border-radius: 35px;
-            border: none;
+        .profile-name {
+            font-size: 1.3rem;
             font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .public-profile-btn {
+            background: #ffe4f0;
+            color: #e91e63;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+        }
+        
+        .menu-list {
+            list-style: none;
+        }
+        
+        .menu-item {
+            padding: 0.9rem 1rem;
+            margin-bottom: 0.3rem;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.7rem;
+            color: #666;
+        }
+        
+        .menu-item:hover {
+            background: #f8f9fa;
+            color: #e91e63;
+        }
+        
+        .menu-item.active {
+            background: #ffe4f0;
+            color: #e91e63;
+            font-weight: 600;
+        }
+        
+        .content-area {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            height: calc(100vh - 250px);
+        }
+        
+        .members-section {
+            width: 350px;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 600;
             font-size: 1.1rem;
+            color: #333;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+        .members-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #999;
+        }
+        
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+        
+        .empty-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .chats-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-placeholder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .chat-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 2rem;
             color: white;
         }
         
-        .btn-secondary {
-            background: linear-gradient(135deg, #e91e63 0%, #ac0742 100%);
-            color: white;
+        .chat-message {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
         }
         
-        .btn-outline {
-            background: transparent;
-            color: #17a2b8;
-            border: 2px solid #17a2b8;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-primary:hover {
-            box-shadow: 0 10px 30px rgba(23, 162, 184, 0.4);
-        }
-        
-        .btn-secondary:hover {
-            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
-        }
-        
-        .btn-outline:hover {
-            background: #17a2b8;
-            color: white;
-        }
-        
-        .decorative-messages {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            font-size: 2.5rem;
-            color: rgba(23, 162, 184, 0.2);
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        .decorative-messages:nth-child(2) {
-            bottom: -15px;
-            left: -15px;
-            top: auto;
-            right: auto;
-            animation-delay: 1.5s;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.2;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.1);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .messaging-container {
-                padding: 2.5rem 1.5rem;
-                margin: 1rem;
-            }
-            
-            .greeting {
-                font-size: 3rem;
-            }
-            
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .message-features {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
+        @media (max-width: 968px) {
+            .main-container {
                 flex-direction: column;
-                align-items: center;
             }
             
-            .btn {
+            .sidebar {
                 width: 100%;
-                max-width: 280px;
-                justify-content: center;
+            }
+            
+            .content-area {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .members-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
             }
         }
     </style>
@@ -324,74 +333,76 @@
 <body>
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Ina Matrimony">
+            <div class="logo-text">Ina</div>
         </div>
-        <div class="user-info">
-            <span>Hi, <strong style="color: #e91e63;">SHIFANA</strong></span>
-            <button class="logout-btn">Logout</button>
+        <div class="header-right">
+            <div class="help-line">Help Line 90 72 89 40 10</div>
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <span>Hi, <span class="username">SHIFANA</span></span>
+                <button class="logout-btn">Logout</button>
+            </div>
         </div>
     </div>
     
+    <div class="nav-bar">
+        <a href="#" class="nav-link">HOME</a>
+        <a href="#" class="nav-link">ACTIVE MEMBERS</a>
+        <a href="#" class="nav-link">PREMIUM PLANS</a>
+        <a href="{{ route('happy-stories') }}" class="nav-link">HAPPY STORIES</a>
+        <a href="#" class="nav-link">CONTACT US</a>
+    </div>
+    
+    <div class="sub-nav-bar">
+        <a href="{{ route('login') }}" class="sub-nav-link">Dashboard</a>
+        <a href="{{ route('my-profile') }}" class="sub-nav-link">My Profile</a>
+        <a href="{{ route('my-interest') }}" class="sub-nav-link">My Interest</a>
+        <a href="{{ route('shortlist') }}" class="sub-nav-link">Shortlist</a>
+        <a href="#" class="sub-nav-link active">Messaging</a>
+        <a href="#" class="sub-nav-link">Ignored User List</a>
+        <a href="#" class="sub-nav-link">Matched profile</a>
+        <a href="#" class="sub-nav-link">Profile Viewers</a>
+    </div>
+    
     <div class="main-container">
-        <div class="messaging-container">
-            <div class="decorative-messages">💬📩</div>
-            <div class="decorative-messages">📨💌</div>
-            
-            <div class="messaging-icon">💬</div>
-            
-            <h1 class="greeting">Hi!</h1>
-            <p class="subtitle">Welcome to your Messaging Center</p>
-            
-            <div class="messaging-message">
-                Connect with potential matches through secure messaging! Send and receive messages, share interests, and build meaningful connections in a safe environment.
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-name">SHIFANA</div>
+                <button class="public-profile-btn">Public Profile</button>
             </div>
             
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">24</div>
-                    <div class="stat-label">Active Conversations</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">7</div>
-                    <div class="stat-label">New Messages</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">45</div>
-                    <div class="stat-label">Total Messages</div>
-                </div>
-            </div>
-            
-            <div class="message-features">
-                <div class="feature-card">
-                    <h4>🔒 Secure Messaging</h4>
-                    <p>All conversations are encrypted and secure. Your privacy is our top priority.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>📸 Photo Sharing</h4>
-                    <p>Share photos and express yourself better with multimedia messaging.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>🚫 Block & Report</h4>
-                    <p>Easy tools to block unwanted contacts and report inappropriate behavior.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>⚡ Instant Notifications</h4>
-                    <p>Get notified instantly when you receive new messages from potential matches.</p>
+            <ul class="menu-list">
+                <li><a href="{{ route('login') }}" class="menu-item">📊 Dashboard</a></li>
+                <li><a href="#" class="menu-item">🖼️ Gallery</a></li>
+                <li><a href="{{ route('happy-stories') }}" class="menu-item">📖 Happy Story</a></li>
+                <li><a href="#" class="menu-item">📦 Packages</a></li>
+                <li><a href="#" class="menu-item">💰 My Wallet</a></li>
+                <li><a href="#" class="menu-item active">💬 Message</a></li>
+                <li><a href="{{ route('my-interest') }}" class="menu-item">❤️ My Interest</a></li>
+                <li><a href="{{ route('shortlist') }}" class="menu-item">📋 Shortlist</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content-area">
+            <div class="members-section">
+                <div class="section-header">Members</div>
+                <div class="members-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">☹️</div>
+                        <div class="empty-text">Nothing Found</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="action-buttons">
-                <a href="{{ route('shortlist') }}" class="btn btn-primary">
-                    ⭐ Shortlist
-                </a>
-                <a href="{{ route('my-interest') }}" class="btn btn-secondary">
-                    ❤️ My Interests
-                </a>
-                <a href="{{ route('my-profile') }}" class="btn btn-outline">
-                    👤 My Profile
-                </a>
+            <div class="chats-section">
+                <div class="section-header">Chats</div>
+                <div class="chat-placeholder">
+                    <div class="chat-icon">👤</div>
+                    <div class="chat-message">Select a Member to view chats</div>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 </body>
 </html>

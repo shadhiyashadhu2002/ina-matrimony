@@ -48,6 +48,28 @@
             font-weight: 600;
         }
         
+        .top-nav {
+            background: #f8f9fa;
+            padding: 0.75rem 2rem;
+            display: flex;
+            gap: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .top-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .top-nav a:hover {
+            background: #e91e63;
+            color: white;
+        }
+        
         .nav-tabs {
             background: white;
             padding: 0 2rem;
@@ -304,9 +326,17 @@
     <div class="header">
         <div class="logo">ina MATRIMONY</div>
         <div class="user-info">
-            <span>Hi, <strong style="color: #e91e63;">SHIFANA</strong></span>
+            <span>Hi, <strong style="color: #e91e63;">SHIFANA</span>
             <button class="logout-btn">Logout</button>
         </div>
+    </div>
+    
+    <div class="top-nav">
+        <a href="{{ route('home') }}">HOME</a>
+        <a href="#">ACTIVE MEMBERS</a>
+        <a href="#">PREMIUM PLANS</a>
+        <a href="{{ route('happy-stories') }}">HAPPY STORIES</a>
+        <a href="#">CONTACT US</a>
     </div>
     
     <div class="nav-tabs">

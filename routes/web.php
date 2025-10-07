@@ -24,6 +24,7 @@ Route::get('/my-profile', [LoginController::class, 'showProfile'])->name('my-pro
 Route::get('/my-interest', [LoginController::class, 'showInterest'])->name('my-interest');
 Route::get('/shortlist', [LoginController::class, 'showShortlist'])->name('shortlist');
 Route::get('/messaging', [LoginController::class, 'showMessaging'])->name('messaging');
+Route::get('/happy-stories', [LoginController::class, 'showHappyStories'])->name('happy-stories');
 
 // Database testing routes
 Route::get('/test-local-db', [DataController::class, 'getLocalData']);

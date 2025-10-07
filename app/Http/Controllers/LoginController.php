@@ -173,4 +173,9 @@ class LoginController extends Controller
     {
         return view('messaging');
     }
+
+    public function showHappyStories()
+    {
+        return view('happy-stories');
+    }
 }

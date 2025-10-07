@@ -727,7 +727,7 @@
                 <a href="#">HOME</a>
                 <a href="#">ACTIVE MEMBERS</a>
                 <a href="#">PREMIUM PLANS</a>
-                <a href="#">HAPPY STORIES</a>
+                <a href="{{ route('happy-stories') }}">HAPPY STORIES</a>
                 <a href="#">CONTACT US</a>
             </div>
         </nav>
@@ -757,7 +757,7 @@
                 <ul class="sidebar-menu">
                     <li><a href="#" class="active">🏠 Dashboard</a></li>
                     <li><a href="#">🖼️ Gallery</a></li>
-                    <li><a href="#">📖 Happy Story</a></li>
+                    <li><a href="{{ route('happy-stories') }}">📖 Happy Story</a></li>
                     <li><a href="#">📦 Packages</a></li>
                     <li><a href="#">💰 My Wallet</a></li>
                     <li><a href="{{ route('messaging') }}">💬 Message</a></li>
